@@ -81,15 +81,15 @@ async function postVerifyPanel() {
   if (existing) return console.log('ℹ️ Verify panel already posted');
 
   const embed = new EmbedBuilder()
-    .setAuthor({ name: 'AllInTogether™' })
+    .setAuthor({ name: 'allintogether™' })
+    .setTitle('Complete verification to join the crew')
     .setDescription(
-      '**Complete verification to join the crew**\n\n' +
       '<:shield:1515109039288090805> Helps us maintain a safe and trusted community\n' +
       '<:shield:1515109039288090805> Hit **Verify** to get started'
     )
     .setThumbnail('https://cdn.discordapp.com/emojis/1515102054933200906.gif')
     .setColor(0x2ECC71)
-    .setFooter({ text: 'AllInTogether™' });
+    .setFooter({ text: 'allintogether™' });
 
   const row = new ActionRowBuilder().addComponents(
     new ButtonBuilder()
