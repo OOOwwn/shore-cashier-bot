@@ -48,7 +48,7 @@ async function postCashierPanel() {
       '**Choose the type of ticket you want to open.**\n\n' +
       '💵 **Deposit** — open a deposit ticket\n' +
       '💰 **Withdrawal** — open a withdrawal ticket\n\n' +
-      '*Fill out the short form and we will process your request right away*'
+      `*Fill out the short form and we'll process your request right away*`
     )
     .setThumbnail('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWVtYmMzaXd1dnUwNTJrdTIzOXVrcG0xOXhkc2t1ajVnNjZhZ3hmbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wu66OryHG16xNF8Z9i/giphy.gif')
     .setColor(0x9B59B6)
@@ -81,20 +81,21 @@ async function postVerifyPanel() {
   if (existing) return console.log('ℹ️ Verify panel already posted');
 
   const embed = new EmbedBuilder()
-    .setTitle('✅  V E R I F Y')
+    .setAuthor({ name: 'AllInTogether™' })
     .setDescription(
-      '**Verify yourself to unlock full server features.**\n\n' +
-      '🔐 Just a quick step to keep things running smoothly\n\n' +
-      '*Click* **Verify** *to get started!*'
+      '**Complete verification to join the crew**\n\n' +
+      '<:shield:1515109039288090805> Helps us maintain a safe and trusted community\n' +
+      '<:shield:1515109039288090805> Hit **Verify** to get started'
     )
+    .setThumbnail('https://cdn.discordapp.com/emojis/1515102054933200906.gif')
     .setColor(0x2ECC71)
-    .setFooter({ text: 'Press the button below to verify.' });
+    .setFooter({ text: 'AllInTogether™' });
 
   const row = new ActionRowBuilder().addComponents(
     new ButtonBuilder()
       .setCustomId('open_verify')
       .setLabel('Verify')
-      .setEmoji('✅')
+      .setEmoji({ id: '1515108574773252157', animated: true })
       .setStyle(ButtonStyle.Success)
   );
 
