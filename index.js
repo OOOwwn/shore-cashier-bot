@@ -38,54 +38,22 @@ async function postRulesEmbed() {
   const existing = messages.find(m => m.author.id === client.user.id && m.embeds.length > 0);
   if (existing) return console.log('ℹ️ Rules embed already posted');
 
+  const rules = [
+    { name: '1. Respect the Shore', value: 'Be respectful to all members. Harassment, hate speech, or personal attacks will not be tolerated.' },
+    { name: '2. 18+ Only', value: 'You must be 18 or older to participate. Please follow the gambling laws in your local jurisdiction.' },
+    { name: '3. No Public Money Transfers', value: 'All transactions must go through the cashier. Public deals between members are not allowed.' },
+    { name: '4. Call Time', value: 'A 30-minute call time is in effect when a player is up over 100BB.' },
+    { name: '5. No Collusion or Cheating', value: 'Collusion, solver use, or any form of cheating is strictly prohibited and will result in immediate removal.' },
+    { name: '6. No Spam or Self-Promo', value: 'No unsolicited ads or self-promotion. Staff approval required.' },
+    { name: '7. Follow Discord Terms of Service', value: 'All members must follow Discord Terms of Service. discord.com/terms' },
+    { name: '8. Respect Staff', value: 'Staff have the final say. Repeated violations may result in a ban.' },
+    { name: '9. Disclaimer', value: 'This server is for entertainment purposes only. We do not condone real money gambling.' },
+  ];
+
   const embed = new EmbedBuilder()
     .setAuthor({ name: 'allintogether™' })
-    .setTitle('📋  House Rules')
-    .setDescription(
-      '**1. 🤝 Respect the Shore**
-' +
-      'Be respectful to all members. Harassment, hate speech, or personal attacks will not be tolerated.
-
-' +
-      '**2. 🔞 18+ Only**
-' +
-      'You must be 18 or older to participate. Please follow the gambling laws in your local jurisdiction.
-
-' +
-      '**3. 💸 No Public Money Transfers**
-' +
-      'All transactions must go through the cashier. Public deals between members are not allowed.
-
-' +
-      '**4. ⏱️ Call Time**
-' +
-      'A 30-minute call time is in effect when a player is up over 100BB.
-
-' +
-      '**5. 🚫 No Collusion or Cheating**
-' +
-      'Collusion, solver use, or any form of cheating is strictly prohibited and will result in immediate removal.
-
-' +
-      '**6. 📢 No Spam or Self-Promo**
-' +
-      'No unsolicited ads or self-promotion. Staff approval required.
-
-' +
-      '**7. 📜 Follow Discord's ToS**
-' +
-      'All members must follow Discord's Terms of Service. discord.com/terms
-
-' +
-      '**8. 👮 Respect Staff**
-' +
-      'Staff have the final say. Repeated violations may result in a ban.
-
-' +
-      '**9. ⚠️ Disclaimer**
-' +
-      'This server is for entertainment purposes only. We do not condone real money gambling.'
-    )
+    .setTitle('House Rules')
+    .addFields(rules.map(r => ({ name: r.name, value: r.value, inline: false })))
     .setColor(0x9B59B6)
     .setFooter({ text: 'allintogether™' });
 
