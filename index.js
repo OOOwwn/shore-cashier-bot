@@ -48,7 +48,7 @@ async function postCashierPanel() {
       '**Choose the type of ticket you want to open.**\n\n' +
       '💵 **Deposit** — open a deposit ticket\n' +
       '💰 **Withdrawal** — open a withdrawal ticket\n\n' +
-      '*Fill out the short form and we'll process your request right away*'
+      '*Fill out the short form and we will process your request right away*'
     )
     .setThumbnail('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWVtYmMzaXd1dnUwNTJrdTIzOXVrcG0xOXhkc2t1ajVnNjZhZ3hmbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wu66OryHG16xNF8Z9i/giphy.gif')
     .setColor(0x9B59B6)
