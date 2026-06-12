@@ -10,6 +10,7 @@ const VERIFY_LOG_CHANNEL_ID = process.env.VERIFY_LOG_CHANNEL_ID;
 const CREW_ROLE_ID = process.env.CREW_ROLE_ID;
 const NEW_ROLE_ID = process.env.NEW_ROLE_ID;
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
+const RULES_CHANNEL_ID = process.env.RULES_CHANNEL_ID;
 
 const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
 const auth = new google.auth.GoogleAuth({
@@ -27,10 +28,76 @@ const client = new Client({
   ]
 });
 
+
+// ─── RULES EMBED ─────────────────────────────────────────────
+async function postRulesEmbed() {
+  const channel = await client.channels.fetch(RULES_CHANNEL_ID);
+  if (!channel) return console.log('❌ Rules channel not found');
+
+  const messages = await channel.messages.fetch({ limit: 10 });
+  const existing = messages.find(m => m.author.id === client.user.id && m.embeds.length > 0);
+  if (existing) return console.log('ℹ️ Rules embed already posted');
+
+  const embed = new EmbedBuilder()
+    .setAuthor({ name: 'allintogether™' })
+    .setTitle('📋  House Rules')
+    .setDescription(
+      '**1. 🤝 Respect the Shore**
+' +
+      'Be respectful to all members. Harassment, hate speech, or personal attacks will not be tolerated.
+
+' +
+      '**2. 🔞 18+ Only**
+' +
+      'You must be 18 or older to participate. Please follow the gambling laws in your local jurisdiction.
+
+' +
+      '**3. 💸 No Public Money Transfers**
+' +
+      'All transactions must go through the cashier. Public deals between members are not allowed.
+
+' +
+      '**4. ⏱️ Call Time**
+' +
+      'A 30-minute call time is in effect when a player is up over 100BB.
+
+' +
+      '**5. 🚫 No Collusion or Cheating**
+' +
+      'Collusion, solver use, or any form of cheating is strictly prohibited and will result in immediate removal.
+
+' +
+      '**6. 📢 No Spam or Self-Promo**
+' +
+      'No unsolicited ads or self-promotion. Staff approval required.
+
+' +
+      '**7. 📜 Follow Discord's ToS**
+' +
+      'All members must follow Discord's Terms of Service. discord.com/terms
+
+' +
+      '**8. 👮 Respect Staff**
+' +
+      'Staff have the final say. Repeated violations may result in a ban.
+
+' +
+      '**9. ⚠️ Disclaimer**
+' +
+      'This server is for entertainment purposes only. We do not condone real money gambling.'
+    )
+    .setColor(0x9B59B6)
+    .setFooter({ text: 'allintogether™' });
+
+  await channel.send({ embeds: [embed] });
+  console.log('✅ Rules embed posted');
+}
+
 client.once('ready', async () => {
   console.log(`✅ Logged in as ${client.user.tag}`);
   await postCashierPanel();
   await postVerifyPanel();
+  await postRulesEmbed();
 });
 
 // ─── CASHIER PANEL ───────────────────────────────────────────
